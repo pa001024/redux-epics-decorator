@@ -124,10 +124,6 @@ export const getAction = <M extends Exclude<keyof T, UseLessAction>, T extends E
   target: Constructorof<T>,
   actionName: M,
 ) => {
-  /* istanbul ignore next*/
-  if (process.env.NODE_ENV === 'development') {
-    console.warn('This is a temporary method for normal style.')
-  }
   const name = Reflect.getMetadata(symbolNamespace, target)
   const actionWithNamespace = withNamespace(name, actionName as string)
   return createAction<UnpackPayload<T[M]>>(actionWithNamespace)
